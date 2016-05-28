@@ -2,14 +2,14 @@ package com.obviobrasil.soneca.poc.mysqlreplica.beans.core.beans;
 
 import com.obviobrasil.soneca.poc.mysqlreplica.beans.core.entity.TestEntity;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 import java.util.List;
 
 /**
  * @author andre
  * @since 28/05/2016 11:54
  */
-@Local
+@Remote
 public interface IReplicaBean {
 
     /**

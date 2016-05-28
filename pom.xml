@@ -13,6 +13,7 @@
         <module>mysqlreplica-ejb</module>
         <module>mysqlreplica-resources</module>
         <module>mysqlreplica-api</module>
+        <module>mysqlreplica-ear</module>
     </modules>
 
 

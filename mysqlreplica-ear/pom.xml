@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>com.obviobrasil.soneca.poc.mysqlreplica-parent</artifactId>
+        <groupId>com.obviobrasil.soneca.poc.mysqlreplica</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mysqlreplica-ear</artifactId>
+
+    <packaging>ear</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.obviobrasil.soneca.poc.mysqlreplica</groupId>
+            <artifactId>mysqlreplica-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>com.obviobrasil.soneca.poc.mysqlreplica</groupId>
+            <artifactId>mysqlreplica-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>alpha</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                        </configuration>
+                    </plugin>
+
+                    <!-- ear -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-ear-plugin</artifactId>
+                        <version>2.7</version>
+                        <configuration>
+                            <defaultLibBundleDir>lib</defaultLibBundleDir>
+                            <includeLibInApplicationXml>false</includeLibInApplicationXml>
+                            <earSourceDirectory>${project.basedir}/../mysqlreplica-resources/src/main/resources/alpha</earSourceDirectory>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>1.0.2.Final</version>
+                        <configuration>
+                            <hostname>localhost</hostname>
+                            <port>9990</port>
+                            <username>raichu</username>
+                            <password>raichu</password>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+</project>

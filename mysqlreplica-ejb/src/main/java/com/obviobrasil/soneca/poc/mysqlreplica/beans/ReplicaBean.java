@@ -5,9 +5,7 @@ import com.obviobrasil.soneca.poc.mysqlreplica.beans.core.entity.TestEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -20,6 +18,7 @@ import java.util.List;
  * @since 28/05/2016 11:55
  */
 @Stateless
+@Remote(IReplicaBean.class)
 public class ReplicaBean implements IReplicaBean {
 
     @PersistenceContext(name = "replicaEm")
@@ -31,7 +30,8 @@ public class ReplicaBean implements IReplicaBean {
     public List<TestEntity> findAll() {
         try {
             LOG.warn("trying get results...");
-            Query query = em.createQuery("SELECT m from " + TestEntity.class.getSimpleName() + " limit 1000 order by id desc");
+            Query query = em.createQuery("SELECT m from " + TestEntity.class.getSimpleName() + " m order by m.id desc");
+            query.setMaxResults(1000);
             return query.getResultList();
         } catch (NoResultException e){
             LOG.error("Error on aquiring resultset", e);

@@ -6,7 +6,7 @@
     <persistence-unit name="mysqlReplicaPU" transaction-type="JTA">
 
 
-        <jta-data-source>java:jboss/datasources/mysqlreplicaDS</jta-data-source>
+        <jta-data-source>java:jboss/datasources/mysqlreplicaXADS</jta-data-source>
 
         <!--<properties>
             <property name="hibernate.dialect"

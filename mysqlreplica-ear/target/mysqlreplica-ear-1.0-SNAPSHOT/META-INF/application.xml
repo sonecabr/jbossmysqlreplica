@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC
+	"-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN"
+	"http://java.sun.com/dtd/application_1_3.dtd">
+<application>
+  <display-name>mysqlreplica-ear</display-name>
+  <module>
+    <ejb>mysqlreplica-ejb-1.0-SNAPSHOT.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>mysqlreplica-api-1.0-SNAPSHOT.war</web-uri>
+      <context-root>/mysqlreplica-api</context-root>
+    </web>
+  </module>
+</application>

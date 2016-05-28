@@ -1,14 +1,15 @@
 package com.obviobrasil.soneca.poc.mysqlreplica.beans.core.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author andre
  * @since 28/05/2016 12:00
  */
 @Entity
-@Table(name = "TEST")
-public class TestEntity {
+@Table(name = "TESTANDRE")
+public class TestEntity implements Serializable{
 
     @Column(name = "id", precision = 7, nullable = false)
     @Id
